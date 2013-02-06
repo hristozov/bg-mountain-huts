@@ -1,0 +1,16 @@
+// Generated: <%= Time.now %>
+var LOGIN_ENDPOINT = <%= "'#{get_rest_url('login')}'" %>;
+var LOGOUT_ENDPOINT = <%= "'#{get_rest_url('logout')}'" %>;
+var NAMES_ENDPOINT = <%= "'#{get_rest_url('objects/names/')}'" %>;
+var ALL_OBJECTS_ENDPOINT = <%= "'#{get_rest_url('objects/all/')}'" %>;
+var ADD_ENDPOINT = <%= "'#{get_rest_url('add/')}'" %>;
+
+function GET_EDIT_ENDPOINT(id) {
+    var nonce = <%= "'#{get_nonce}'" %>;
+    return "/rest/edit/" + id + "?nonce=" + nonce;
+}
+
+function GET_DELETE_ENDPOINT(id) {
+    var nonce = <%= "'#{get_nonce}'" %>;
+    return "/rest/delete/" + id + "?nonce=" + nonce;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8" />
+		<title>Начало &larr; Хижите</title>
+		<meta name="author" content="Георги Христозов" />
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/css/bootstrap-responsive.min.css">
+		<link rel="stylesheet" href="/css/style.css" />
+		<link rel="stylesheet" href="/css/jquery-ui.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="Sinatra" />
+		<script src="/js/jquery-1.9.0.min.js"></script>
+		<script src="/js/jquery-ui.js"></script>
+        <script src="/js/huts.js"></script>
+        <script src="/endpoints.js"></script>
+        <script src="/js/sha1.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+                //$("#search-input").autocomplete({source: availableTags});
+                $.getJSON(NAMES_ENDPOINT,
+                    function(data)
+                    {
+                        $("#search-input").autocomplete({source: data});
+                    });
+
+                var loggedIn = <%= is_logged_in? %>
+                if (loggedIn) {
+                    hideLoginButtons();
+                } else {
+                    showLoginButtons();
+                }
+
+                $('.search-input').keypress(function (e) {
+                    alert("1")
+                    if (e.which == 13) {
+                        alert("vla");
+                    }
+                });
+
+                $(".form-search").submit(function(e) {
+                    window.event.returnValue = false;
+                    e.preventDefault();
+                    document.location = '/list/' + $("#search-input").val();
+                });
+			})
+</script>
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<a class="brand" href="/">Хижите</a>
+					<div class="nav-collapse">
+						<ul class="nav">
+							<li ><a href="/map/">карта</a></li>
+							<li ><a href="/list/">списък</a></li>
+							<li ><a href="/contact/">контакт</a></li>
+							<li><form class="form-search" style="">
+								<input id="search-input" type="text" class="input-medium search-query top-bar-input-element"
+								placeholder="Търси обект">
+							</form></li>
+                          <!-- conditional show -->
+                            <li><form class="form-login">
+                                <input id="email-input" type="text" class="input-medium login-input top-bar-input-element"
+                                   placeholder="Електронна поща">
+                                <input id="password-input" type="password" class="input-medium login-input top-bar-input-element"
+                                     placeholder="Парола">
+                                <button id="login-button" type="button" class="btn btn-primary" data-loading-text="Изчакайте..."
+                                        onclick="loginButtonClicked()">Вход</button>
+                                <button id="logout-button" type="button" class="btn btn-primary" data-loading-text="Изчакайте..." style="display: none;"
+                                      onclick="logoutButtonClicked()">Изход</button>
+                            </form></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="container-fluid">
+          <%= yield %>
+        </div>
+		<script src="/js/bootstrap.min.js"></script>
+	</body>
+</html>

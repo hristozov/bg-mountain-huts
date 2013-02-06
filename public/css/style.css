@@ -1,0 +1,60 @@
+body {
+	padding-top: 60px;
+}
+
+a {
+	font-weight: bold;
+	text-decoration : none;
+}
+
+h1, h2, h3, h4 {
+	text-align: left;
+}
+
+.hero-unit {
+	background: #ffffff url('/img/kom2.jpg') no-repeat;
+	color: #000000
+}
+
+.container-fluid {
+	text-align: justify;
+	clear: both;
+	max-width: 1080px;
+	margin: 0 auto;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.right-img {
+	float: right;
+	margin-right: 0;
+	border: 1px solid silver;
+	padding: 2px;
+	margin: 0em 0em 0.8em 0.8em;
+}
+
+.form-login {
+    margin: 3px 0px 0px;
+    position: fixed;
+    right: 30px;
+}
+
+.top-bar-input-element {
+    height: 15px;
+}
+
+.form-search {
+    padding: 8px 15px;
+    margin: 0px 0px 0px 0px;
+}
+
+.login-input {
+    padding: 8px 15px;
+    margin: 5px 0px 0px 0px;
+}
+
+#map_canvas {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}

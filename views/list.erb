@@ -1,0 +1,32 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Тип</th>
+    <th>Име</th>
+    <th>Lat</th>
+    <th>Lng</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% for object in objects do %>
+      <tr>
+        <td><%= get_object_type(object) %></td>
+        <td><%= object.name %></td>
+        <td><%= object.lat %></td>
+        <td><%= object.lng %></td>
+        <% if is_logged_in? %>
+            <td>
+              <button id="mod-button" type="button" class="btn btn-primary" data-loading-text="Изчакайте..."
+                        onclick="modifyButtonClicked('<%= object.id %>')">Промени</button>
+              <button id="delete-button" type="button" class="btn btn-primary" data-loading-text="Изчакайте..."
+                      onclick="deleteButtonClicked('<%= object.id %>')">Изтрий</button>
+            </td>
+        <% end %>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<% if is_logged_in? %>
+    <button id="add-button" type="button" class="btn btn-primary" data-loading-text="Изчакайте..."
+            onclick="addButtonClicked()">Добави нов</button>
+<% end %>

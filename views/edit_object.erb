@@ -1,0 +1,32 @@
+<form>
+  <label for="id-input">ID</label>
+  <input id="id-input" type="text" class="input-medium top-bar-input-element"
+         placeholder="<Нов>" value="<%= (defined? object) ? object.id : '' %>" readonly>
+  <label for="type-input">Тип</label>
+  <% if defined? object %>
+      <input id="type-input" type="text" class="input-medium top-bar-input-element"
+             placeholder="<Нов>" value="<%= get_object_type(object) %>" readonly>
+  <% else %>
+      <select id="type-input">
+        <option value="generic">друго</option>
+        <option value="hut">хижа</option>
+        <option value="shelter">заслон</option>
+      </select>
+  <% end %>
+  <label for="name-input">Име</label>
+  <input id="name-input" type="text" class="input-medium top-bar-input-element"
+         placeholder="Име" value="<%= (defined? object) ? object.name : '' %>">
+  <label for="lat-input">Географска ширина</label>
+  <input id="lat-input" type="text" class="input-medium top-bar-input-element"
+         placeholder="Lat" value="<%= (defined? object) ? object.lat : ''%>">
+  <label for="lng-input">Географска дължина</label>
+  <input id="lng-input" type="text" class="input-medium top-bar-input-element"
+         placeholder="Lng" value="<%= (defined? object) ? object.lng : '' %>">
+  <label for="alt-input">Надморска височина</label>
+  <input id="alt-input" type="text" class="input-medium top-bar-input-element"
+         placeholder="Lng" value="<%= (defined? object) ? object.alt : '' %>">
+  <label for="description-input">Описание</label>
+  <textarea id="description-input" rows="5"><%= (defined? object) ? object.description : ''%></textarea>
+</form>
+<button id="submit-modifications-button" type="button" class="btn btn-primary" data-loading-text="Изчакайте..."
+         onclick="updateObject()">Готово</button>
